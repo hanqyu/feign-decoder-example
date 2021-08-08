@@ -1,0 +1,20 @@
+spring:
+  application.name: feign-example
+  profiles:
+    active: local
+
+server.port: ${PORT:8080}
+logging:
+  level:
+    org.springframework.cloud: debug
+
+feign:
+  client:
+    config:
+      default:
+        decoder: com.hanqyu.example.feign.beer.BeerClientDecoder
+        defaultRequestHeaders:
+          Authorization:
+            - AUTH-KEY
+          Content-Type:
+            - application/json;charset=UTF-8
