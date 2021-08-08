@@ -12,7 +12,9 @@ class BeerClientDecoder(decoder: Decoder) : ResponseEntityDecoder(decoder) {
         val returnType = TypeFactory.rawClass(type)
         val forClassWithGenerics = ResolvableType.forClassWithGenerics(BeerCommonResponse::class.java, returnType)
         return runCatching {
-            super.decode(response, forClassWithGenerics.type) as BeerCommonResponse<*>
-        }.getOrThrow().data
+            (super.decode(response, forClassWithGenerics.type) as BeerCommonResponse<*>).data
+        }.getOrDefault(
+            super.decode(response, type)
+        )
     }
 }
