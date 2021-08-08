@@ -1,6 +1,6 @@
-package com.hanqyu.example.feign.beer
+package com.hanqyu.example.feign
 
-data class BeerCommonResponse<T>(
+data class CommonResponse<T>(
     val result: String?,
     val data: T?,
     val error: ErrorData?
