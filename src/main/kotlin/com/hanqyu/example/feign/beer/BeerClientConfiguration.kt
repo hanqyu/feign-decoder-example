@@ -1,6 +1,7 @@
 package com.hanqyu.example.feign.beer
 
 import feign.RequestInterceptor
+import feign.codec.ErrorDecoder
 import org.springframework.beans.factory.ObjectFactory
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters
 import org.springframework.cloud.openfeign.support.SpringDecoder
@@ -25,5 +26,10 @@ class BeerClientConfiguration {
             it.header(HttpHeaders.AUTHORIZATION, "AUTH-KEY")
             it.header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
         }
+    }
+
+    @Bean
+    fun errorDecoder(): ErrorDecoder {
+        return BeerClientErrorDecoder()
     }
 }
